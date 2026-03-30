@@ -10,9 +10,9 @@ services:
       - ./app:/app
     ports:
       - "8091:8080"
-    command: >
-      bash -lc "
-      set -euo pipefail;
-      make install &&
-      make test
-      "
+    # command: >
+    #   bash -lc "
+    #   set -euo pipefail;
+    #   make install &&
+    #   make test
+    #   "
