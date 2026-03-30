@@ -1,0 +1,10 @@
+services:
+  app:
+    image: gonpaul/devops-for-developers-project-74:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    container_name: js-fastify-blog-prod
+    ports:
+      - "8090:8080"
+    command: make start

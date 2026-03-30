@@ -1,0 +1,10 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    command: >
+      bash -lc "
+      set -euo pipefail;
+      make test
+      "

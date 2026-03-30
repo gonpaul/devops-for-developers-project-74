@@ -1,0 +1,17 @@
+FROM node:20-bookworm
+WORKDIR /app
+
+# Важно для кеширования слоев
+COPY app/js-fastify-blog/package.json package.json
+COPY app/js-fastify-blog/package-lock.json package-lock.json
+
+RUN npm ci
+
+COPY app/. .
+
+EXPOSE 8080
+ENV NODE_ENV=production
+WORKDIR /app/js-fastify-blog
+RUN make build
+
+CMD make start

@@ -1,0 +1,18 @@
+services:
+  app:
+    # image: gonpaul/devops-for-developers-project-74:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: js-fastify-blog-dev
+    working_dir: /app/js-fastify-blog
+    volumes:
+      - ./app:/app
+    ports:
+      - "8091:8080"
+    command: >
+      bash -lc "
+      set -euo pipefail;
+      make install &&
+      make test
+      "

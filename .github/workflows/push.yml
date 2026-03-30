@@ -1,0 +1,36 @@
+name: ci-cd
+
+on:
+  - push
+  # push:
+  #   branches:
+  #     - '**'
+  #   tags:
+  #     - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # strategy:
+    #   matrix:
+    #     node-version: [24.x]
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - run: make ci
+      - uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # собрать production-образ
+      - run: make build 
+      # отправить образ на Docker Hub с тегом latest
+      - run: make push
+
+
+        # uses: hexlet/project-action@release
+        # with:
+        #   hexlet-id: ${{ secrets.HEXLET_ID }}

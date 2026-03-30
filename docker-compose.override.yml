@@ -1,0 +1,11 @@
+services:
+  app:
+    volumes:
+      - ./app:/app
+    command: >
+      bash -lc "
+      set -euo pipefail;
+      make install &&
+      make test &&
+      exec make dev
+      "
