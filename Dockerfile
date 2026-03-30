@@ -16,4 +16,4 @@ else \
 fi; \
 echo '[3/3] Installing dependencies. Run tests and start dev server'; \
 cd /app/js-fastify-blog; \
-make install && make test && exec make dev"
+make install && make test"
